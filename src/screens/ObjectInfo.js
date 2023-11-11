@@ -2,21 +2,22 @@ import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Text, Image} from 'react-native';
 import GlobalStyle from '../utils/GlobalStyle';
 import CustomButton from '../utils/CustomButton';
+
 export default function ObjectInfo({navigation}) {
   const [randomImage, setRandomImage] = useState(null);
   const images = [
     {
-      source: require('C:\\Users\\Terry\\WebstormProjects\\ScavengerHunt\\assets\\chair.png'),
-      description: 'A comfortable chair',
+      source: require('C:\\Users\\Terry\\WebstormProjects\\ScavengerHunt\\assets\\dog.png'),
+      description: 'Dogs are thought to be as smart as two-year-old children.',
     },
-    {
-      source: require('C:\\Users\\Terry\\WebstormProjects\\ScavengerHunt\\assets\\table.png'),
-      description: 'A sturdy table',
-    },
-    {
-      source: require('C:\\Users\\Terry\\WebstormProjects\\ScavengerHunt\\assets\\Koolaid.png'),
-      description: 'A refreshing Kool-Aid',
-    },
+    // {
+    //   source: require('C:\\Users\\Terry\\WebstormProjects\\ScavengerHunt\\assets\\table.png'),
+    //   description: 'A sturdy table',
+    // },
+    // {
+    //   source: require('C:\\Users\\Terry\\WebstormProjects\\ScavengerHunt\\assets\\Koolaid.png'),
+    //   description: 'A refreshing Kool-Aid',
+    // },
   ];
   const getRandomImage = () => {
     const randomIndex = Math.floor(Math.random() * images.length);
@@ -27,16 +28,16 @@ export default function ObjectInfo({navigation}) {
   }, []);
   return (
     <View style={styles.body}>
-      <Text style={[GlobalStyle.CustomFont, styles.text]}>
-        Go Find This Object !
-      </Text>
+      <Text style={[GlobalStyle.CustomFont, styles.text]}>Did You Know !</Text>
       {randomImage && (
-        <View style={styles.imageContainer}>
-          <Image
-            source={randomImage.source}
-            style={styles.image}
-            resizeMode="contain"
-          />
+        <View style={styles.container}>
+          <View style={styles.imageContainer}>
+            <Image
+              source={randomImage.source}
+              style={styles.image}
+              resizeMode="contain"
+            />
+          </View>
           <Text style={styles.description}>{randomImage.description}</Text>
         </View>
       )}
@@ -60,35 +61,9 @@ const styles = StyleSheet.create({
     fontSize: 40,
     margin: 10,
   },
-  input: {
-    width: 300,
-    borderWidth: 1,
-    borderColor: '#555',
-    borderRadius: 10,
-    backgroundColor: '#ffffff',
-    textAlign: 'center',
-    fontSize: 20,
-    marginTop: 130,
-    marginBottom: 10,
-  },
-  item: {
-    backgroundColor: '#ffffff',
-    borderWidth: 2,
-    borderColor: '#cccccc',
-    borderRadius: 5,
-    margin: 7,
-    width: 350,
-    justifyContent: 'center',
+  container: {
     alignItems: 'center',
-  },
-  title: {
-    fontSize: 30,
     margin: 10,
-  },
-  subtitle: {
-    fontSize: 20,
-    margin: 10,
-    color: '#999999',
   },
   imageContainer: {
     width: 300,

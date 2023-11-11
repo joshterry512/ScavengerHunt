@@ -3,8 +3,8 @@ import {StyleSheet, View, Text, Button, TextInput, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 export default function Settings() {
-  const [hours, setHours] = useState('0');
-  const [minutes, setMinutes] = useState('0');
+  const [hours, setHours] = useState();
+  const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState(null);
   const [isActive, setIsActive] = useState(false);
   const navigation = useNavigation();

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Text, TextInput, Alert} from 'react-native';
 import CustomButton from '../utils/CustomButton';
 import SQLite from 'react-native-sqlite-storage';
@@ -20,6 +20,13 @@ import PushNotification from 'react-native-push-notification';
 export default function Login({navigation}) {
   const {name, age} = useSelector(state => state.userReducer);
   const dispatch = useDispatch();
+  const [maskedAge, setMaskedAge] = useState('');
+
+  const handleAgeChange = value => {
+    // Replace each character with "*"
+    const maskedValue = value.replace(/./g, '*');
+    setMaskedAge(maskedValue);
+  };
 
   useEffect(() => {
     // createTable();
@@ -89,8 +96,9 @@ export default function Login({navigation}) {
       />
       <TextInput
         style={styles.input}
-        placeholder="Enter your age"
-        onChangeText={value => dispatch(setAge(value))}
+        placeholder="Enter your Password"
+        value={maskedAge}
+        onChangeText={value => handleAgeChange(value)}
       />
       <CustomButton
         title="Login"

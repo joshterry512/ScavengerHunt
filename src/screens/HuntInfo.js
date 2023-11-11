@@ -7,9 +7,9 @@ export default function HuntInfo({navigation}) {
 
   const getRandomImage = () => {
     const images = [
-      require('C:\\Users\\Terry\\WebstormProjects\\ScavengerHunt\\assets\\chair.png'),
+      require('C:\\Users\\Terry\\WebstormProjects\\ScavengerHunt\\assets\\dog.png'),
       require('C:\\Users\\Terry\\WebstormProjects\\ScavengerHunt\\assets\\table.png'),
-      require('C:\\Users\\Terry\\WebstormProjects\\ScavengerHunt\\assets\\Koolaid.png'),
+      // require('C:\\Users\\Terry\\WebstormProjects\\ScavengerHunt\\assets\\Koolaid.png'),
     ];
     const randomIndex = Math.floor(Math.random() * images.length);
     setRandomImage(images[randomIndex]);
@@ -19,9 +19,7 @@ export default function HuntInfo({navigation}) {
   }, []);
   return (
     <View style={styles.body}>
-      <Text style={[GlobalStyle.CustomFont, styles.text]}>
-        Go Find This Object !
-      </Text>
+      <Text style={[GlobalStyle.CustomFont, styles.text]}>Go Find This !</Text>
       {randomImage && (
         <View style={styles.imageContainer}>
           <Image
