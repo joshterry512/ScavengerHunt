@@ -70,7 +70,6 @@ export default function Settings() {
 
   return (
     <View style={styles.body}>
-      <Text style={styles.text}>Scavenger Hunt Settings</Text>
       <Text style={styles.text}>Set Timer for Children</Text>
 
       <TextInput
@@ -141,8 +140,8 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   buttonContainer: {
-    flexDirection: 'row',
     justifyContent: 'space-between',
     width: 200,
+    alignItems: 'center',
   },
 });

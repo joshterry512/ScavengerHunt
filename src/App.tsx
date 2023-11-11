@@ -6,20 +6,21 @@ import Login from './screens/Login';
 import Camera from './screens/Camera';
 import {Provider} from 'react-redux';
 import {Store} from './redux/store';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+// import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import Settings from './screens/Settings';
 import HuntInfo from './screens/HuntInfo';
 import ObjectInfo from './screens/ObjectInfo';
-// import Task from './screens/Task';
+import Task from './screens/Task';
 
-// const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+// const Tab = createBottomTabNavigator();
 
 function App() {
   return (
     <Provider store={Store}>
       <NavigationContainer>
-        <Tab.Navigator
+        <Stack.Navigator
           initialRouteName="Login"
           screenOptions={{
             headerTitleAlign: 'center',
@@ -32,14 +33,14 @@ function App() {
               fontWeight: 'bold',
             },
           }}>
-          <Tab.Screen name="Login" component={Login} />
-          <Tab.Screen name="Home" component={Home} />
-          <Tab.Screen name="Settings" component={Settings} />
-          <Tab.Screen name="Camera" component={Camera} />
-          <Tab.Screen name="Hunt" component={HuntInfo} />
-          <Tab.Screen name="Info" component={ObjectInfo} />
-          {/*<Tab.Screen name="Task" component={Task} />*/}
-        </Tab.Navigator>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Settings" component={Settings} />
+          <Stack.Screen name="Camera" component={Camera} />
+          <Stack.Screen name="Hunt" component={HuntInfo} />
+          <Stack.Screen name="Info" component={ObjectInfo} />
+          <Stack.Screen name="Task" component={Task} />
+        </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );
