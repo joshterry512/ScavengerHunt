@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, View, Text, FlatList, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import GlobalStyle from '../utils/GlobalStyle';
 import SQLite from 'react-native-sqlite-storage';
 import {useSelector, useDispatch} from 'react-redux';
-import {setName, setAge, getCities} from '../redux/actions';
-import PushNotification from 'react-native-push-notification';
+import {setName, setAge} from '../redux/actions';
 import CustomButton from '../utils/CustomButton';
+import {useNavigation} from '@react-navigation/native';
 
 const db = SQLite.openDatabase(
   {
@@ -19,9 +19,8 @@ const db = SQLite.openDatabase(
 );
 
 export default function Home({navigation}) {
-  const {name, age, cities} = useSelector(state => state.userReducer);
+  const {name, age} = useSelector(state => state.userReducer);
   const dispatch = useDispatch();
-
   const getData = () => {
     try {
       db.transaction(tx => {
@@ -49,8 +48,18 @@ export default function Home({navigation}) {
         title="Start Scavenger Hunt"
         color="#0080ff"
         onPressFunction={() => {
-          navigation.navigate('Camera');
+          navigation.navigate('Hunt');
         }}
+      />
+      <CustomButton
+        title="Create New Task"
+        color="#0080ff"
+        onPressFunction={() => navigation.navigate('Task')}
+      />
+      <CustomButton
+        title="Settings"
+        color="#0080ff"
+        onPressFunction={() => navigation.navigate('Settings')}
       />
     </View>
   );

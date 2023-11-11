@@ -4,9 +4,11 @@ import {RNCamera} from 'react-native-camera';
 import {useCamera} from 'react-native-camera-hooks';
 import CustomButton from '../utils/CustomButton';
 import RNFS from 'react-native-fs';
+import {useNavigation} from '@react-navigation/native';
 
 export default function Camera() {
   const [{cameraRef}, {takePicture}] = useCamera(null);
+  const navigation = useNavigation();
 
   const captureHandle = async () => {
     try {
@@ -25,6 +27,9 @@ export default function Camera() {
       console.log(error);
     }
   };
+  const goToNextScreen = () => {
+    navigation.navigate('Info');
+  };
 
   return (
     <View style={styles.body}>
@@ -35,7 +40,10 @@ export default function Camera() {
         <CustomButton
           title="Capture"
           color="#1eb900"
-          onPressFunction={() => captureHandle()}
+          onPressFunction={() => {
+            captureHandle();
+            goToNextScreen();
+          }}
         />
       </RNCamera>
     </View>

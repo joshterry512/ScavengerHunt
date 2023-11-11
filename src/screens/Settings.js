@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Text, Button, TextInput} from 'react-native';
+import {StyleSheet, View, Text, Button, TextInput, Alert} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 export default function Settings() {
   const [hours, setHours] = useState('0');
   const [minutes, setMinutes] = useState('0');
-  const [seconds, setSeconds] = useState(0);
+  const [seconds, setSeconds] = useState(null);
   const [isActive, setIsActive] = useState(false);
+  const navigation = useNavigation();
 
   const startTimer = () => {
     const totalSeconds = parseInt(hours) * 3600 + parseInt(minutes) * 60;
@@ -18,7 +20,39 @@ export default function Settings() {
     setSeconds(0);
   };
 
+  // const showAlert = () => {
+  //   Alert.alert(
+  //     'Timer Alert',
+  //     'Time to start your Scavenger Hunt!',
+  //     [
+  //       {
+  //         text: 'OK',
+  //         onPress: () => {
+  //           navigation.navigate('Camera');
+  //         },
+  //       },
+  //     ],
+  //     {cancelable: false},
+  //   );
+  // };
+
   useEffect(() => {
+    const showAlert = () => {
+      Alert.alert(
+        'Timer Alert',
+        'Time to start your Scavenger Hunt!',
+        [
+          {
+            text: 'OK',
+            onPress: () => {
+              navigation.navigate('Hunt');
+            },
+          },
+        ],
+        {cancelable: true},
+      );
+    };
+
     let interval;
     if (isActive && seconds > 0) {
       interval = setInterval(() => {
@@ -26,13 +60,13 @@ export default function Settings() {
       }, 1000);
     } else if (seconds === 0) {
       setIsActive(false);
+      showAlert();
     }
 
     return () => clearInterval(interval);
-  }, [isActive, seconds]);
+  }, [isActive, navigation, seconds]);
 
-  const onClickHandler = () => {
-  };
+  const onClickHandler = () => {};
 
   return (
     <View style={styles.body}>

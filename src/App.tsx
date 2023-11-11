@@ -1,15 +1,16 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 import Home from './screens/Home';
 import Login from './screens/Login';
-import Map from './screens/Map';
 import Camera from './screens/Camera';
 import {Provider} from 'react-redux';
 import {Store} from './redux/store';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Settings from './screens/Settings';
+import HuntInfo from './screens/HuntInfo';
+import ObjectInfo from './screens/ObjectInfo';
+// import Task from './screens/Task';
 
 // const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -35,6 +36,9 @@ function App() {
           <Tab.Screen name="Home" component={Home} />
           <Tab.Screen name="Settings" component={Settings} />
           <Tab.Screen name="Camera" component={Camera} />
+          <Tab.Screen name="Hunt" component={HuntInfo} />
+          <Tab.Screen name="Info" component={ObjectInfo} />
+          {/*<Tab.Screen name="Task" component={Task} />*/}
         </Tab.Navigator>
       </NavigationContainer>
     </Provider>
