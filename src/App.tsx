@@ -35,7 +35,7 @@ function App() {
           }}>
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Settings" component={Settings} />
+          <Stack.Screen name="Timer" component={Settings} />
           <Stack.Screen name="Camera" component={Camera} />
           <Stack.Screen name="Hunt" component={HuntInfo} />
           <Stack.Screen name="Info" component={ObjectInfo} />

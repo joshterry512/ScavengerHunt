@@ -64,7 +64,7 @@ export default function Home({navigation}) {
       <CustomButton
         title="Timer"
         color="#0080ff"
-        onPressFunction={() => navigation.navigate('Settings')}
+        onPressFunction={() => navigation.navigate('Timer')}
       />
     </View>
   );

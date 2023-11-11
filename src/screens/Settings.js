@@ -117,7 +117,7 @@ export default function Settings() {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: '#0000ff',
+    backgroundColor: '#0080ff',
     alignItems: 'center',
     justifyContent: 'center',
   },
