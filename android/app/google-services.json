@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "364114002187",
+    "project_id": "scavengerhunt-f8e34",
+    "storage_bucket": "scavengerhunt-f8e34.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364114002187:android:3054849427d34879efe20e",
+        "android_client_info": {
+          "package_name": "com.scavengerhunt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvAXa8CTEHurOAgLZLFUzhAe_7KJTqCvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

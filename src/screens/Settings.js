@@ -3,13 +3,22 @@ import {StyleSheet, View, Text, Button, TextInput, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 export default function Settings() {
-  const [hours, setHours] = useState();
-  const [minutes, setMinutes] = useState();
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(null);
   const [isActive, setIsActive] = useState(false);
   const navigation = useNavigation();
 
   const startTimer = () => {
+    // Validate if hours and minutes are numeric
+    if (isNaN(hours) || isNaN(minutes)) {
+      Alert.alert(
+        'Invalid Input',
+        'Please enter valid numeric values for hours and minutes.',
+      );
+      return;
+    }
+
     const totalSeconds = parseInt(hours) * 3600 + parseInt(minutes) * 60;
     setSeconds(totalSeconds);
     setIsActive(true);
@@ -19,22 +28,6 @@ export default function Settings() {
     setIsActive(false);
     setSeconds(0);
   };
-
-  // const showAlert = () => {
-  //   Alert.alert(
-  //     'Timer Alert',
-  //     'Time to start your Scavenger Hunt!',
-  //     [
-  //       {
-  //         text: 'OK',
-  //         onPress: () => {
-  //           navigation.navigate('Camera');
-  //         },
-  //       },
-  //     ],
-  //     {cancelable: false},
-  //   );
-  // };
 
   useEffect(() => {
     const showAlert = () => {
@@ -65,8 +58,6 @@ export default function Settings() {
 
     return () => clearInterval(interval);
   }, [isActive, navigation, seconds]);
-
-  const onClickHandler = () => {};
 
   return (
     <View style={styles.body}>

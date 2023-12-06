@@ -50,6 +50,11 @@ export default function Home({navigation}) {
         resizeMode="contain"
       />
       <CustomButton
+        title="Timer"
+        color="#0080ff"
+        onPressFunction={() => navigation.navigate('Timer')}
+      />
+      <CustomButton
         title="Start Scavenger Hunt"
         color="#0080ff"
         onPressFunction={() => {
@@ -60,11 +65,6 @@ export default function Home({navigation}) {
         title="Create New Task"
         color="#0080ff"
         onPressFunction={() => navigation.navigate('Task')}
-      />
-      <CustomButton
-        title="Timer"
-        color="#0080ff"
-        onPressFunction={() => navigation.navigate('Timer')}
       />
     </View>
   );

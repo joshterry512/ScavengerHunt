@@ -1,31 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Text, TextInput, Alert} from 'react-native';
 import CustomButton from '../utils/CustomButton';
-import SQLite from 'react-native-sqlite-storage';
-import {useSelector, useDispatch} from 'react-redux';
-import {setName, setAge} from '../redux/actions';
-import PushNotification from 'react-native-push-notification';
-
-// const db = SQLite.openDatabase(
-//   {
-//     name: 'MainDB',
-//     location: 'default',
-//   },
-//   () => {},
-//   error => {
-//     console.log(error);
-//   },
-// );
+import {useDispatch} from 'react-redux';
+import {setName} from '../redux/actions';
 
 export default function Login({navigation}) {
-  const {name, age} = useSelector(state => state.userReducer);
   const dispatch = useDispatch();
-  const [maskedAge, setMaskedAge] = useState('');
+  const [name, setNameValue] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleAgeChange = value => {
-    // Replace each character with "*"
-    const maskedValue = value.replace(/./g, '*');
-    setMaskedAge(maskedValue);
+  const handleLoginPress = () => {
+    if (!name.trim()) {
+      Alert.alert('Error', 'Please enter your name.');
+      return;
+    }
+
+    if (!password.trim()) {
+      Alert.alert('Error', 'Please enter your password.');
+      return;
+    }
+    navigation.navigate('Home');
   };
 
   useEffect(() => {
@@ -34,78 +28,28 @@ export default function Login({navigation}) {
     // createChannels();
   }, []);
 
-  // const createTable = () => {
-  //   db.transaction(tx => {
-  //     tx.executeSql(
-  //       'CREATE TABLE IF NOT EXISTS ',
-  //       'Users ' +
-  //         '(ID INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Age INTEGER);',
-  //     );
-  //   });
-  // };
-
-  // const createChannels = () => {
-  //   PushNotification.createChannel({
-  //     channelId: 'test-channel',
-  //     channelName: 'Test Channel',
-  //   });
-  // };
-
-  // const getData = () => {
-  //   try {
-  //     db.transaction(tx => {
-  //       tx.executeSql('SELECT Name, Age FROM Users', [], (tx, results) => {
-  //         var len = results.rows.length;
-  //         if (len > 0) {
-  //           navigation.navigate('Home');
-  //         }
-  //       });
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // const setData = async () => {
-  //   if (name.length == 0 || age.length == 0) {
-  //     Alert.alert('Warning!', 'Please write your data.');
-  //   } else {
-  //     try {
-  //       dispatch(setName(name));
-  //       dispatch(setAge(age));
-  //       await db.transaction(async tx => {
-  //         await tx.executeSql('INSERT INTO Users (Name, Age) VALUES (?,?)', [
-  //           name,
-  //           age,
-  //         ]);
-  //       });
-  //       navigation.navigate('Home');
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  // };
-
   return (
     <View style={styles.body}>
       <Text style={styles.text} />
       <TextInput
         style={styles.input}
         placeholder="Enter your name"
-        onChangeText={value => dispatch(setName(value))}
+        onChangeText={value => {
+          dispatch(setName(value));
+          setNameValue(value);
+        }}
       />
       <TextInput
         style={styles.input}
         placeholder="Enter your Password"
-        value={maskedAge}
-        onChangeText={value => handleAgeChange(value)}
+        value={password}
+        onChangeText={value => setPassword(value)}
+        secureTextEntry={true} // This masks the input for a password
       />
       <CustomButton
         title="Login"
         color="#1eb900"
-        onPressFunction={() => {
-          navigation.navigate('Home');
-        }}
+        onPressFunction={handleLoginPress}
       />
     </View>
   );
